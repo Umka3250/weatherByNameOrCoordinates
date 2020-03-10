@@ -15,38 +15,22 @@ class WeatherInfo extends React.Component {
                 {
                     this.props.byName &&
                     <Row>
-                        <div className="card col-5 offset-3 mt-5">
-                            <div className="card-body">
-                                <h1 className="card-title text-center">Weather in {this.props.cityByName.nameOfCity}</h1>
-                                <div className="form-row">
-                                    <label className="col-form-label col-4">Temperature:</label>
-                                    <input
-                                        className="form-control-plaintext col-8"
-                                        type="text"
-                                        value={ this.props.cityByName.temp }
-                                        readOnly
-                                    />
-                                </div>
-                                <div className="form-row">
-                                    <label className="col-form-label col-4">Sunrise at:</label>
-                                    <input
-                                        className="form-control-plaintext col-8"
-                                        type="text"
-                                        value={ this.props.cityByName.sunrise }
-                                        readOnly
-                                    />
-                                </div>
-                                <div className="form-row">
-                                    <label className="col-form-label col-4">Wind speed:</label>
-                                    <input
-                                        className="form-control-plaintext col-8"
-                                        type="text"
-                                        value={ this.props.cityByName.wind }
-                                        readOnly
-                                    />
+                        <Col>
+                            <div className="card mt-5">
+                                <div className="card-header">Weather in {this.props.cityByName.nameOfCity}</div>
+                                <div className="card-body">
+                                    <p className="card-text">
+                                        Temperature { this.props.cityByName.temp }
+                                    </p>
+                                    <p className="card-text">
+                                        Sunrise { this.props.cityByName.sunrise }
+                                    </p>
+                                    <p className="card-text">
+                                        Wind speed { this.props.cityByName.wind }
+                                    </p>
                                 </div>
                             </div>
-                        </div>
+                        </Col>
                     </Row>
                 }
                 {
