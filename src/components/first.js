@@ -82,8 +82,8 @@ class First extends React.Component {
 
     getWeatherByName = (dataCityName) => {
         if(this.state.apiCityName) {
-            let sunrise = dataCityName.sys.sunrise;
-            let date = new Date(sunrise);
+            const sunrise = dataCityName.sys.sunrise;
+            const date = new Date(sunrise);
             const sunriseTime = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
 
             this.setState({

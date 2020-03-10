@@ -1,6 +1,7 @@
 import React from 'react';
 import {Tab, Nav, Row, Col} from "react-bootstrap";
 import MapReactGl from "./mapReactGl";
+import moment from "moment";
 
 class WeatherInfo extends React.Component {
     render() {
@@ -52,20 +53,23 @@ class WeatherInfo extends React.Component {
                     this.props.byCoordinates &&
                     <Row>
                         <div className="row mb-5">
-                            <div className="card text-white bg-secondary col mt-5">
+                            <div className="card bg-light col mt-5">
                                 <div className="card-body">
-                                    <h1 className="card-title text-center">Weather in {this.props.cityByCoordinates.nameByCoordinates}</h1>
+                                    <h1 className="card-title text-center">
+                                        Weather in {this.props.cityByCoordinates.nameByCoordinates} <br/>
+                                        Today is {moment().format('L')}
+                                    </h1>
                                     <Tab.Container>
-                                            <Row className="mb-5">
+                                            <Row className="mt-5 mb-5 text-center">
                                                 {this.props.cityByCoordinates.weatherArr.map((item, i) => {
                                                     return (
                                                         <Col>
                                                             <Nav variant="tabs" className="border-bottom-0">
                                                                 <Nav.Link
                                                                     eventKey={item.dt}
-                                                                    className="btn-secondary"
+                                                                    className="btn-primary w-100"
                                                                 >
-                                                                    {item.dt_txt}
+                                                                    {item.dt_txt.substr(0,11)}
                                                                 </Nav.Link>
                                                             </Nav>
                                                         </Col>
@@ -78,9 +82,9 @@ class WeatherInfo extends React.Component {
                                                         {this.props.cityByCoordinates.weatherArr.map((item, i) => {
                                                             return (
                                                                 <Tab.Pane eventKey={item.dt}>
-                                                                    <div className="card text-white bg-primary">
+                                                                    <div className="card bg-light">
                                                                         <div className="card-header">
-                                                                            {this.props.cityByCoordinates.nameByCoordinates}
+                                                                            {this.props.cityByCoordinates.nameByCoordinates} - {item.dt_txt.substr(0,11)}
                                                                         </div>
                                                                         <div className="card-body">
                                                                             <p className="card-text">
