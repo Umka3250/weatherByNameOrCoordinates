@@ -31,6 +31,7 @@ class First extends React.Component {
             },
             placeCoordinates: undefined,
             error: undefined,
+            isLoading: false,
             events: {},
         }
         this.onChangeHandle = this.onChangeHandle.bind(this);
@@ -63,13 +64,20 @@ class First extends React.Component {
         this.setState({
             lon: longitude,
             lat: latitude,
+            isLoading: true,
         })
 
         const urlForWeatherByCoordinates = await fetch(
             `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`);
         const dataCoordinates = await urlForWeatherByCoordinates.json();
 
-        this.getWeatherByCoordinates(dataCoordinates);
+        setTimeout(()=>{
+            this.getWeatherByCoordinates(dataCoordinates);
+            this.setState({
+               isLoading: false,
+            });
+        },3000);
+
     }
 
     updateByNewCoordinates = async(handleLat, handlelong) => {
@@ -123,6 +131,7 @@ class First extends React.Component {
         return (
             <Container className="text-center mt-5">
                 <WeatherForm
+                    isLoading={this.state.isLoading}
                     weatherByName={this.requestForWeatherByName}
                     weatherByCoordinates={this.requestForWeatherByCoordinates}
                     getValueName={this.onChangeHandle}

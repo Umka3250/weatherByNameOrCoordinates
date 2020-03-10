@@ -15,9 +15,10 @@ class WeatherForm extends React.Component {
                         </div>
                         <button
                             type="submit"
-                            className="btn btn-primary"
+                            className="btn btn-outline-primary"
                             onClick={this.props.weatherByName}
-                        >By name of city
+                        >
+                            By name of city
                         </button>
                         <div className="form-row mt-3">
                             <div className="col">
@@ -26,9 +27,16 @@ class WeatherForm extends React.Component {
                         </div>
                         <button
                             type="submit"
-                            className="btn btn-primary"
+                            className="btn btn-outline-primary"
                             onClick={this.props.weatherByCoordinates}
-                        >By coordinates
+                            disabled={this.props.isLoading}
+                        >
+                            { this.props.isLoading &&
+                                <span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true">
+                                    
+                                </span>
+                            }
+                            By coordinates
                         </button>
                     </form>
                 </div>
