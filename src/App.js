@@ -1,14 +1,15 @@
 import React from 'react';
-import Header from './components/header';
-
-import './css/main.scss';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
 import {Route} from "react-router-dom";
+
+import Header from './components/header';
 import First from "./components/first";
 import Second from "./components/second";
 import Third from "./components/third";
 import Fourth from "./components/fourth";
+
+import './css/main.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 class App extends React.Component {
