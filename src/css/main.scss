@@ -6,6 +6,13 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
+
+.container-for-map {
+  width: 55vw;
+  height: 55vh;
+  border: 3px solid lightgray;
+}
+
 .control-panel {
   position: absolute;
   top: 0;
@@ -21,12 +28,14 @@ input::-webkit-inner-spin-button {
   text-transform: uppercase;
   outline: none;
 }
+
 .navbar-link-color {
   color: white;
   &:hover{
     color: coral;
   }
 }
+
 .wfm-active {
     color: coral;
 }

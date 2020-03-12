@@ -72,8 +72,8 @@ class MapReactGl extends React.Component{
         return (
             <ReactMapGL
                 {...this.state.viewport}
-                width="60vw"
-                height="50vh"
+                width="100%"
+                height="100%"
                 mapStyle="mapbox://styles/umka3250/ck7m7v3w70sbv1imt846gxo74"
                 onViewportChange={this._updateViewport}
                 mapboxApiAccessToken={TOKEN}

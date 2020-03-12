@@ -43,51 +43,53 @@ class WeatherInfo extends React.Component {
                                     Today is {moment().format('L')}
                                 </h1>
                                 <Tab.Container>
-                                        <Row className="mt-5 mb-5 text-center">
-                                            {this.props.cityByCoordinates.weatherArr.map((item, i) => {
-                                                return (
-                                                    <Col>
-                                                        <Nav variant="tabs" className="border-bottom-0">
-                                                            <Nav.Link
-                                                                eventKey={item.dt}
-                                                                className="btn-primary w-100"
-                                                            >
-                                                                {item.dt_txt.substr(0,11)}
-                                                            </Nav.Link>
-                                                        </Nav>
-                                                    </Col>
-                                                );
-                                            })}
-                                        </Row>
-                                        <Row className="mb-5">
-                                            <Col>
-                                                <Tab.Content>
-                                                    {this.props.cityByCoordinates.weatherArr.map((item, i) => {
-                                                        return (
-                                                            <Tab.Pane eventKey={item.dt}>
-                                                                <div className="card bg-light">
-                                                                    <div className="card-header">
-                                                                        {this.props.cityByCoordinates.nameByCoordinates} - {item.dt_txt.substr(0,11)}
-                                                                    </div>
-                                                                    <div className="card-body">
-                                                                        <p className="card-text">
-                                                                            Temperature {Math.round(item.main.temp) + "°C"}
-                                                                        </p>
-                                                                        <p className="card-text">
-                                                                            Pressure {item.main.pressure + ' hpa'}
-                                                                        </p>
-                                                                        <p className="card-text">
-                                                                            Wind speed {item.wind.speed + " m/s"}
-                                                                        </p>
-                                                                    </div>
+                                    <Row className="mt-5 mb-5 text-center">
+                                        {this.props.cityByCoordinates.weatherArr.map((item, i) => {
+                                            return (
+                                                <Col>
+                                                    <Nav variant="tabs" className="border-bottom-0">
+                                                        <Nav.Link
+                                                            eventKey={item.dt}
+                                                            className="btn-primary w-100"
+                                                        >
+                                                            {item.dt_txt.substr(0,11)}
+                                                        </Nav.Link>
+                                                    </Nav>
+                                                </Col>
+                                            );
+                                        })}
+                                    </Row>
+                                    <Row className="mb-5">
+                                        <Col>
+                                            <Tab.Content>
+                                                {this.props.cityByCoordinates.weatherArr.map((item, i) => {
+                                                    return (
+                                                        <Tab.Pane eventKey={item.dt}>
+                                                            <div className="card bg-light">
+                                                                <div className="card-header">
+                                                                    {this.props.cityByCoordinates.nameByCoordinates} - {item.dt_txt.substr(0,11)}
                                                                 </div>
-                                                            </Tab.Pane>
-                                                        );
-                                                    })}
-                                                </Tab.Content>
-                                            </Col>
-                                        </Row>
-                                    </Tab.Container>
+                                                                <div className="card-body">
+                                                                    <p className="card-text">
+                                                                        Temperature {Math.round(item.main.temp) + "°C"}
+                                                                    </p>
+                                                                    <p className="card-text">
+                                                                        Pressure {item.main.pressure + ' hpa'}
+                                                                    </p>
+                                                                    <p className="card-text">
+                                                                        Wind speed {item.wind.speed + " m/s"}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </Tab.Pane>
+                                                    );
+                                                })}
+                                            </Tab.Content>
+                                        </Col>
+                                    </Row>
+                                </Tab.Container>
+                                <hr/>
+                                <div className="container-for-map">
                                     <MapReactGl
                                         long = {this.props.lonCoordinates}
                                         lat={this.props.latCoordinates}
@@ -95,6 +97,7 @@ class WeatherInfo extends React.Component {
                                         latitudeFromMap={this.props.latitudeFromMap}
                                         handleCoordinates={this.props.handleCoordinates}
                                     />
+                                </div>
                             </div>
                         </div>
                     </Row>
