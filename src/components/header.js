@@ -1,6 +1,8 @@
 import React from "react";
+import {NavLink} from "react-router-dom";
 
 import {Container, Navbar, Nav, Form, Button} from "react-bootstrap";
+
 import logo from "../img/logo192.png";
 
 export class Header extends React.Component {
@@ -22,10 +24,38 @@ export class Header extends React.Component {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mr-auto">
-                            <Nav.Link href="/" >First</Nav.Link>
-                            <Nav.Link href="/second" >Second</Nav.Link>
-                            <Nav.Link href="/third" >Third</Nav.Link>
-                            <Nav.Link href="/fourth" >Fourth</Nav.Link>
+                            <NavLink
+                                exact
+                                to="/"
+                                className="nav-link text-decoration-none navbar-link-color"
+                                activeClassName={'wfm-active'}
+                            >
+                                Home Page
+                            </NavLink>
+                            <NavLink
+                                exact
+                                to="/second"
+                                className="nav-link text-decoration-none navbar-link-color"
+                                activeClassName={'wfm-active'}
+                            >
+                                Page for cars
+                            </NavLink>
+                            <NavLink
+                                exact
+                                to="/third"
+                                className="nav-link text-decoration-none navbar-link-color"
+                                activeClassName={'wfm-active'}
+                            >
+                                Third Page
+                            </NavLink>
+                            <NavLink
+                                exact
+                                to="/fourth"
+                                className="nav-link text-decoration-none navbar-link-color"
+                                activeClassName={'wfm-active'}
+                            >
+                                Fourth Page
+                            </NavLink>
                         </Nav>
                         <Form inline >
                             <Button variant="outline-light">Search</Button>

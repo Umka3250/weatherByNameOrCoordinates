@@ -6,6 +6,13 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
+
+.container-for-map {
+  width: 55vw;
+  height: 55vh;
+  border: 3px solid lightgray;
+}
+
 .control-panel {
   position: absolute;
   top: 0;
@@ -20,4 +27,8 @@ input::-webkit-inner-spin-button {
   color: #6b6b76;
   text-transform: uppercase;
   outline: none;
+}
+
+.wfm-active {
+    color: coral!important;
 }

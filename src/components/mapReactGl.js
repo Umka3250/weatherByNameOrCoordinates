@@ -72,9 +72,9 @@ class MapReactGl extends React.Component{
         return (
             <ReactMapGL
                 {...this.state.viewport}
-                width="60vw"
-                height="50vh"
-                mapStyle="mapbox://styles/umka3250/ck7kdh06g0oma1itbj3btvkvh"
+                width="100%"
+                height="100%"
+                mapStyle="mapbox://styles/umka3250/ck7m7v3w70sbv1imt846gxo74"
                 onViewportChange={this._updateViewport}
                 mapboxApiAccessToken={TOKEN}
             >
@@ -91,10 +91,7 @@ class MapReactGl extends React.Component{
                     <NavigationControl onViewportChange={this._updateViewport} />
                 </div>
 
-                <ControlPanel
-                    containerComponent={this.props.containerComponent}
-                    events={this.state.events}
-                />
+                <ControlPanel />
             </ReactMapGL>
         );
     }

@@ -12,31 +12,31 @@ class First extends React.Component {
         super(props)
 
         this.state = {
-            lat: undefined,
-            lon: undefined,
-            longitudeFromMap: undefined,
-            latitudeFromMap: undefined,
+            lat: null,
+            lon: null,
+            longitudeFromMap: null,
+            latitudeFromMap: null,
             byName: false,
             byCoordinates: false,
             cityByName: {
-                nameOfCity: undefined,
-                temp: undefined,
-                sunrise: undefined,
+                nameOfCity: null,
+                temp: null,
+                sunrise: null,
                 apiCityName: '',
-                wind: undefined,
+                wind: null,
             },
             cityByCoordinates: {
-                nameByCoordinates: undefined,
+                nameByCoordinates: null,
                 weatherArr: [],
             },
-            placeCoordinates: undefined,
-            error: undefined,
+            placeCoordinates: null,
+            error: null,
+            isLoading: false,
             events: {},
         }
-        this.onChangeHandle = this.onChangeHandle.bind(this);
     }
 
-    onChangeHandle(event) {
+    onChangeHandle = event => {
         this.setState({apiCityName: event.target.value});
     }
 
@@ -63,13 +63,20 @@ class First extends React.Component {
         this.setState({
             lon: longitude,
             lat: latitude,
+            isLoading: true,
         })
 
         const urlForWeatherByCoordinates = await fetch(
             `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`);
         const dataCoordinates = await urlForWeatherByCoordinates.json();
 
-        this.getWeatherByCoordinates(dataCoordinates);
+        setTimeout(()=>{
+            this.getWeatherByCoordinates(dataCoordinates);
+            this.setState({
+               isLoading: false,
+            });
+        },3000);
+
     }
 
     updateByNewCoordinates = async(handleLat, handlelong) => {
@@ -82,8 +89,8 @@ class First extends React.Component {
 
     getWeatherByName = (dataCityName) => {
         if(this.state.apiCityName) {
-            let sunrise = dataCityName.sys.sunrise;
-            let date = new Date(sunrise);
+            const sunrise = dataCityName.sys.sunrise;
+            const date = new Date(sunrise);
             const sunriseTime = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
 
             this.setState({
@@ -123,6 +130,7 @@ class First extends React.Component {
         return (
             <Container className="text-center mt-5">
                 <WeatherForm
+                    isLoading={this.state.isLoading}
                     weatherByName={this.requestForWeatherByName}
                     weatherByCoordinates={this.requestForWeatherByCoordinates}
                     getValueName={this.onChangeHandle}
