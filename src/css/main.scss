@@ -29,13 +29,6 @@ input::-webkit-inner-spin-button {
   outline: none;
 }
 
-.navbar-link-color {
-  color: white;
-  &:hover{
-    color: coral;
-  }
-}
-
 .wfm-active {
-    color: coral;
+    color: coral!important;
 }

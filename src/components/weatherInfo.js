@@ -46,10 +46,10 @@ class WeatherInfo extends React.Component {
                                     <Row className="mt-5 mb-5 text-center">
                                         {this.props.cityByCoordinates.weatherArr.map((item, i) => {
                                             return (
-                                                <Col>
+                                                <Col key={i}>
                                                     <Nav variant="tabs" className="border-bottom-0">
                                                         <Nav.Link
-                                                            eventKey={item.dt}
+                                                            eventKey={item.dt.toString()}
                                                             className="btn-primary w-100"
                                                         >
                                                             {item.dt_txt.substr(0,11)}
@@ -64,7 +64,7 @@ class WeatherInfo extends React.Component {
                                             <Tab.Content>
                                                 {this.props.cityByCoordinates.weatherArr.map((item, i) => {
                                                     return (
-                                                        <Tab.Pane eventKey={item.dt}>
+                                                        <Tab.Pane key={i} eventKey={item.dt}>
                                                             <div className="card bg-light">
                                                                 <div className="card-header">
                                                                     {this.props.cityByCoordinates.nameByCoordinates} - {item.dt_txt.substr(0,11)}

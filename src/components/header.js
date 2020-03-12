@@ -24,46 +24,38 @@ export class Header extends React.Component {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mr-auto">
-                            <Nav.Link>
-                                <NavLink
-                                    exact
-                                    to="/"
-                                    className="text-decoration-none navbar-link-color"
-                                    activeClassName={'wfm-active'}
-                                >
-                                    Home Page
-                                </NavLink>
-                            </Nav.Link>
-                            <Nav.Link>
-                                <NavLink
-                                    exact
-                                    to="/second"
-                                    className="text-decoration-none navbar-link-color"
-                                    activeClassName={'wfm-active'}
-                                >
-                                    Page for cars
-                                </NavLink>
-                            </Nav.Link>
-                            <Nav.Link>
-                                <NavLink
-                                    exact
-                                    to="/third"
-                                    className="text-decoration-none navbar-link-color"
-                                    activeClassName={'wfm-active'}
-                                >
-                                    Third Page
-                                </NavLink>
-                            </Nav.Link>
-                            <Nav.Link>
-                                <NavLink
-                                    exact
-                                    to="/fourth"
-                                    className="text-decoration-none navbar-link-color"
-                                    activeClassName={'wfm-active'}
-                                >
-                                    Fourth Page
-                                </NavLink>
-                            </Nav.Link>
+                            <NavLink
+                                exact
+                                to="/"
+                                className="nav-link text-decoration-none navbar-link-color"
+                                activeClassName={'wfm-active'}
+                            >
+                                Home Page
+                            </NavLink>
+                            <NavLink
+                                exact
+                                to="/second"
+                                className="nav-link text-decoration-none navbar-link-color"
+                                activeClassName={'wfm-active'}
+                            >
+                                Page for cars
+                            </NavLink>
+                            <NavLink
+                                exact
+                                to="/third"
+                                className="nav-link text-decoration-none navbar-link-color"
+                                activeClassName={'wfm-active'}
+                            >
+                                Third Page
+                            </NavLink>
+                            <NavLink
+                                exact
+                                to="/fourth"
+                                className="nav-link text-decoration-none navbar-link-color"
+                                activeClassName={'wfm-active'}
+                            >
+                                Fourth Page
+                            </NavLink>
                         </Nav>
                         <Form inline >
                             <Button variant="outline-light">Search</Button>

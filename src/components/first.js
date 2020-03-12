@@ -12,32 +12,31 @@ class First extends React.Component {
         super(props)
 
         this.state = {
-            lat: undefined,
-            lon: undefined,
-            longitudeFromMap: undefined,
-            latitudeFromMap: undefined,
+            lat: null,
+            lon: null,
+            longitudeFromMap: null,
+            latitudeFromMap: null,
             byName: false,
             byCoordinates: false,
             cityByName: {
-                nameOfCity: undefined,
-                temp: undefined,
-                sunrise: undefined,
+                nameOfCity: null,
+                temp: null,
+                sunrise: null,
                 apiCityName: '',
-                wind: undefined,
+                wind: null,
             },
             cityByCoordinates: {
-                nameByCoordinates: undefined,
+                nameByCoordinates: null,
                 weatherArr: [],
             },
-            placeCoordinates: undefined,
-            error: undefined,
+            placeCoordinates: null,
+            error: null,
             isLoading: false,
             events: {},
         }
-        this.onChangeHandle = this.onChangeHandle.bind(this);
     }
 
-    onChangeHandle(event) {
+    onChangeHandle = event => {
         this.setState({apiCityName: event.target.value});
     }
 

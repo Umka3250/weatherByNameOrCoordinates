@@ -91,10 +91,7 @@ class MapReactGl extends React.Component{
                     <NavigationControl onViewportChange={this._updateViewport} />
                 </div>
 
-                <ControlPanel
-                    containerComponent={this.props.containerComponent}
-                    events={this.state.events}
-                />
+                <ControlPanel />
             </ReactMapGL>
         );
     }

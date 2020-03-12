@@ -12,8 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
-class App extends React.Component {
-    render() {
+function App() {
         return (
             <div>
                 <Header />
@@ -24,6 +23,5 @@ class App extends React.Component {
             </div>
         );
     }
-}
 
 export default App;
