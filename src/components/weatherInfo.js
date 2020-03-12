@@ -46,7 +46,7 @@ class WeatherInfo extends React.Component {
                                     <Row className="mt-5 mb-5 text-center">
                                         {this.props.cityByCoordinates.weatherArr.map((item, i) => {
                                             return (
-                                                <Col key={i}>
+                                                <Col className="mt-2" key={i}>
                                                     <Nav variant="tabs" className="border-bottom-0">
                                                         <Nav.Link
                                                             eventKey={item.dt.toString()}

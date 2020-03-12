@@ -12,7 +12,11 @@ input::-webkit-inner-spin-button {
   height: 55vh;
   border: 3px solid lightgray;
 }
-
+@media (max-width: 1200px) {
+  .control-panel{
+    display: none;
+  }
+}
 .control-panel {
   position: absolute;
   top: 0;
@@ -20,7 +24,7 @@ input::-webkit-inner-spin-button {
   max-width: 320px;
   background: #fff;
   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-  padding: 12px 24px;
+  padding: 10px 15px;
   margin: 20px;
   font-size: 13px;
   line-height: 2;
