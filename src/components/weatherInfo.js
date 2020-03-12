@@ -67,6 +67,18 @@ class WeatherInfo extends React.Component {
                                                         <Tab.Pane key={i} eventKey={item.dt}>
                                                             <div className="card bg-light">
                                                                 <div className="card-header">
+                                                                    {item.weather.map((item, i) => {
+                                                                        return (
+                                                                            <img
+                                                                                key={i}
+                                                                                width="30px"
+                                                                                height="30px"
+                                                                                src={'https://openweathermap.org/img/wn/'+item.icon+'.png'}
+                                                                                alt="No PNG"
+                                                                                className="bg-secondary rounded-circle p-0 mr-1"
+                                                                            />
+                                                                        );
+                                                                    })}
                                                                     {this.props.cityByCoordinates.nameByCoordinates} - {item.dt_txt.substr(0,11)}
                                                                 </div>
                                                                 <div className="card-body">
