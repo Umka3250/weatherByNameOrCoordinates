@@ -33,7 +33,7 @@ class WeatherForm extends React.Component {
                         >
                             { this.props.isLoading &&
                                 <span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true">
-                                    
+
                                 </span>
                             }
                             By coordinates

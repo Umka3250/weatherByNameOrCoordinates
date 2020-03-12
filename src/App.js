@@ -1,10 +1,10 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-
 import Header from './components/header';
 
 import './css/main.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+import {Route} from "react-router-dom";
 import First from "./components/first";
 import Second from "./components/second";
 import Third from "./components/third";
@@ -16,14 +16,10 @@ class App extends React.Component {
         return (
             <div>
                 <Header />
-                <Router>
-                    <Switch>
-                        <Route exact path="/" component={First}/>
-                        <Route exact path="/second" component={Second}/>
-                        <Route exact path="/third" component={Third}/>
-                        <Route exact path="/fourth" component={Fourth}/>
-                    </Switch>
-                </Router>
+                <Route exact path="/" component={First}/>
+                <Route exact path="/second" component={Second}/>
+                <Route exact path="/third" component={Third}/>
+                <Route exact path="/fourth" component={Fourth}/>
             </div>
         );
     }

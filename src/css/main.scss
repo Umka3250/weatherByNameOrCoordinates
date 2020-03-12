@@ -21,3 +21,12 @@ input::-webkit-inner-spin-button {
   text-transform: uppercase;
   outline: none;
 }
+.navbar-link-color {
+  color: white;
+  &:hover{
+    color: coral;
+  }
+}
+.wfm-active {
+    color: coral;
+}
