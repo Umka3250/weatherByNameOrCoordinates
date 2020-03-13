@@ -8,15 +8,11 @@ input::-webkit-inner-spin-button {
 }
 
 .container-for-map {
-  width: 55vw;
-  height: 55vh;
+  width: 100vw;
+  height: 100vh;
   border: 3px solid lightgray;
 }
-@media (max-width: 1200px) {
-  .control-panel{
-    display: none;
-  }
-}
+
 .control-panel {
   position: absolute;
   top: 0;
@@ -35,4 +31,10 @@ input::-webkit-inner-spin-button {
 
 .wfm-active {
     color: coral!important;
+}
+
+@media (max-width: 1200px) {
+  .control-panel{
+    display: none;
+  }
 }
