@@ -9,7 +9,13 @@ export class Header extends React.Component {
     render() {
         return (
         <>
-            <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
+            <Navbar
+                className="sticky-top"
+                collapseOnSelect
+                expand="md"
+                bg="dark"
+                variant="dark"
+            >
                 <Container>
                     <Navbar.Brand href="/">
                         <img

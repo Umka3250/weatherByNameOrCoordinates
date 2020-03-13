@@ -5,6 +5,23 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  background-position: center center;
+  background-image: url("./img/forest.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+#overlay-for-img-bg {
+  width: 100%;
+  min-height: 100vh;
+  background-color: rgba(0,0,0,0.7);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: repeat-y;
 }
 
 code {

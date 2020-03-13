@@ -8,25 +8,30 @@ export const WeatherForm = (props) => {
                 <form>
                     <div className="form-row">
                         <div className="form-group col">
-                            <label>Enter your city</label>
-                            <input type="text" className="form-control text-center" name="city" onChange={props.getValueName}/>
+                            <label className="text-light">Enter your city</label>
+                            <input
+                                type="text"
+                                className="text-light bg-transparent form-control text-center w-50 mt-0 mb-0 mr-auto ml-auto"
+                                name="city"
+                                onChange={props.getValueName}
+                            />
                         </div>
                     </div>
                     <button
                         type="submit"
-                        className="btn btn-outline-primary"
+                        className="btn btn-outline-success font-weight-bold"
                         onClick={props.weatherByName}
                     >
                         By name of city
                     </button>
-                    <div className="form-row mt-3">
+                    <div className="form-row mt-3 mb-3">
                         <div className="col">
-                            <label>Or by coordinates</label>
+                            <label className="text-light">Or by coordinates</label>
                         </div>
                     </div>
                     <button
                         type="submit"
-                        className="btn btn-outline-primary"
+                        className="btn btn-outline-success font-weight-bold"
                         onClick={props.weatherByCoordinates}
                         disabled={props.isLoading}
                     >

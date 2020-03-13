@@ -1,3 +1,5 @@
+//#root {
+//}
 input[type='number'] {
   -moz-appearance:textfield;
 }
@@ -31,10 +33,4 @@ input::-webkit-inner-spin-button {
 
 .wfm-active {
     color: coral!important;
-}
-
-@media (max-width: 1200px) {
-  .control-panel{
-    display: none;
-  }
 }

@@ -40,6 +40,10 @@ class MapReactGl extends React.Component{
         }
     }
 
+    _updateViewport = viewport => {
+        this.setState({viewport});
+    };
+
     _logDragEvent(name, event) {
         this.setState({
             events: {
@@ -72,6 +76,7 @@ class MapReactGl extends React.Component{
                 width="100%"
                 height="100%"
                 mapStyle="mapbox://styles/umka3250/ck7m7v3w70sbv1imt846gxo74"
+                onViewportChange={this._updateViewport}
                 mapboxApiAccessToken={TOKEN}
             >
                 <Marker

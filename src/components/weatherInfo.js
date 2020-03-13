@@ -18,7 +18,7 @@ class WeatherInfo extends React.Component {
                         <Col>
                             <CardDeck>
                                 <Card className="card mt-5">
-                                    <div className="card-header">Weather in {this.props.cityByName.nameOfCity}</div>
+                                    <Card.Header className="card-header">Weather in {this.props.cityByName.nameOfCity}</Card.Header>
                                     <Card.Body>
                                         <Card.Text>
                                             Temperature { this.props.cityByName.temp }
@@ -40,10 +40,14 @@ class WeatherInfo extends React.Component {
                     <Row>
                         <Col>
                             <CardDeck>
-                                <Card className="bg-light mt-5 mb-5">
-                                    <Card.Header className="text-center">
-                                        Weather in {this.props.cityByCoordinates.nameByCoordinates} <br/>
-                                        Today is {moment().format('L')}
+                                <Card className="bg-transparent border-0 mt-5 mb-5">
+                                    <Card.Header className="font-weight-bold text-center border-bottom-0">
+                                        <Card.Text className="text-light">
+                                            Weather in {this.props.cityByCoordinates.nameByCoordinates}
+                                        </Card.Text>
+                                        <Card.Text className="text-light">
+                                            Today is {moment().format('L')}
+                                        </Card.Text>
                                     </Card.Header>
                                     <Card.Body>
                                         <Tab.Container>
@@ -51,10 +55,10 @@ class WeatherInfo extends React.Component {
                                                 {this.props.cityByCoordinates.weatherArr.map((item, i) => {
                                                     return (
                                                         <Col className="mt-3" key={i}>
-                                                            <Nav variant="tabs" className="border-bottom-0">
+                                                            <Nav variant="pills" className="border-bottom-0">
                                                                 <Nav.Link
                                                                     eventKey={item.dt.toString()}
-                                                                    className="btn-primary w-100"
+                                                                    className="btn btn-outline-success font-weight-bold w-100"
                                                                 >
                                                                     {item.dt_txt.substr(0,11)}
                                                                 </Nav.Link>
@@ -106,7 +110,7 @@ class WeatherInfo extends React.Component {
                                         </Tab.Container>
                                         <div className="container">
                                             <div className="row">
-                                                <div className=" col container-for-map">
+                                                <div className="pl-0 pr-0 col container-for-map">
                                                     <MapReactGl
                                                         long = {this.props.lonCoordinates}
                                                         lat={this.props.latCoordinates}
