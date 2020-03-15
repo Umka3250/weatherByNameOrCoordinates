@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom";
 
 import {Container, Navbar, Nav, Form, Button} from "react-bootstrap";
 
-import logo from "../img/logo192.png";
+import logo from "../../img/logo192.png";
 
 export class Header extends React.Component {
     render() {
@@ -31,11 +31,18 @@ export class Header extends React.Component {
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mr-auto">
                             <NavLink
-                                to="/first"
-                                className="nav-link text-decoration-none navbar-link-color"
+                                to="/byName"
                                 activeClassName={'wfm-active'}
+                                className="nav-link text-decoration-none"
                             >
-                                Home Page
+                                Weather by city
+                            </NavLink>
+                            <NavLink
+                                to="/byCoordinates"
+                                activeClassName={'wfm-active'}
+                                className="nav-link text-decoration-none"
+                            >
+                                Weather by coordinates
                             </NavLink>
                             <NavLink
                                 to="/second"

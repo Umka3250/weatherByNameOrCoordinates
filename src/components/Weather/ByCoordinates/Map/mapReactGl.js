@@ -35,6 +35,13 @@ class MapReactGl extends React.Component{
                 marker: {
                     latitude: 30,
                     longitude: 50,
+                },
+                viewport: {
+                    latitude: this.props.lat,
+                    longitude: this.props.long,
+                    zoom: 14,
+                    bearing: 0,
+                    pitch: 0
                 }
             })
         }
@@ -69,7 +76,6 @@ class MapReactGl extends React.Component{
     };
 
     render() {
-        console.log(this.state.viewport)
         return (
             <ReactMapGL
                 {...this.state.viewport}
