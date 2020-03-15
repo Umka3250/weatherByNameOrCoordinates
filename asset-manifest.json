@@ -1,26 +1,26 @@
 {
   "files": {
     "main.css": "/weatherByNameOrCoordinates/static/css/main.d6e4159a.chunk.css",
-    "main.js": "/weatherByNameOrCoordinates/static/js/main.58d04a6d.chunk.js",
-    "main.js.map": "/weatherByNameOrCoordinates/static/js/main.58d04a6d.chunk.js.map",
+    "main.js": "/weatherByNameOrCoordinates/static/js/main.33db7939.chunk.js",
+    "main.js.map": "/weatherByNameOrCoordinates/static/js/main.33db7939.chunk.js.map",
     "runtime-main.js": "/weatherByNameOrCoordinates/static/js/runtime-main.e47ad85d.js",
     "runtime-main.js.map": "/weatherByNameOrCoordinates/static/js/runtime-main.e47ad85d.js.map",
     "static/css/2.47e06e2e.chunk.css": "/weatherByNameOrCoordinates/static/css/2.47e06e2e.chunk.css",
-    "static/js/2.2db3eb2e.chunk.js": "/weatherByNameOrCoordinates/static/js/2.2db3eb2e.chunk.js",
-    "static/js/2.2db3eb2e.chunk.js.map": "/weatherByNameOrCoordinates/static/js/2.2db3eb2e.chunk.js.map",
+    "static/js/2.53cf39e9.chunk.js": "/weatherByNameOrCoordinates/static/js/2.53cf39e9.chunk.js",
+    "static/js/2.53cf39e9.chunk.js.map": "/weatherByNameOrCoordinates/static/js/2.53cf39e9.chunk.js.map",
     "index.html": "/weatherByNameOrCoordinates/index.html",
-    "precache-manifest.28c4199a0f677d62f00577b0c66827b4.js": "/weatherByNameOrCoordinates/precache-manifest.28c4199a0f677d62f00577b0c66827b4.js",
+    "precache-manifest.db03a9f939cfdae43b72cbd95cfef445.js": "/weatherByNameOrCoordinates/precache-manifest.db03a9f939cfdae43b72cbd95cfef445.js",
     "service-worker.js": "/weatherByNameOrCoordinates/service-worker.js",
     "static/css/2.47e06e2e.chunk.css.map": "/weatherByNameOrCoordinates/static/css/2.47e06e2e.chunk.css.map",
     "static/css/main.d6e4159a.chunk.css.map": "/weatherByNameOrCoordinates/static/css/main.d6e4159a.chunk.css.map",
-    "static/js/2.2db3eb2e.chunk.js.LICENSE.txt": "/weatherByNameOrCoordinates/static/js/2.2db3eb2e.chunk.js.LICENSE.txt",
+    "static/js/2.53cf39e9.chunk.js.LICENSE.txt": "/weatherByNameOrCoordinates/static/js/2.53cf39e9.chunk.js.LICENSE.txt",
     "static/media/index.css": "/weatherByNameOrCoordinates/static/media/forest.765087d3.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.e47ad85d.js",
     "static/css/2.47e06e2e.chunk.css",
-    "static/js/2.2db3eb2e.chunk.js",
+    "static/js/2.53cf39e9.chunk.js",
     "static/css/main.d6e4159a.chunk.css",
-    "static/js/main.58d04a6d.chunk.js"
+    "static/js/main.33db7939.chunk.js"
   ]
 }
