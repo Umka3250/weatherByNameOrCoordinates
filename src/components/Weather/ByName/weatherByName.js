@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {Card, CardDeck, Col, Container, Row} from "react-bootstrap";
-
-const apiKey = "cd2d4d88f8fd3a3bffd9bcbf58dab9aa";
+import {getWeatherByName} from "../getWeather/getWeather";
 
 export default function WeatherByName() {
 
@@ -16,7 +15,6 @@ export default function WeatherByName() {
         },
         error: null,
     });
-    console.log(byName)
 
     const onChangeHandle = event => {
         setByName({
@@ -24,40 +22,6 @@ export default function WeatherByName() {
                 apiCityName: event.target.value
             }
         });
-        console.log(byName.cityByName.apiCityName)
-    }
-
-    const getWeatherByName = async(event) => {
-        event.preventDefault();
-
-        const urlForWeatherByName = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${byName.cityByName.apiCityName}&appid=${apiKey}&units=metric`);
-        const dataCityName = await urlForWeatherByName.json();
-
-        setWeatherByName(dataCityName);
-    }
-
-    const setWeatherByName = (dataCityName) => {
-        if(byName.cityByName.apiCityName) {
-            const sunrise = dataCityName.sys.sunrise;
-            const date = new Date(sunrise);
-            const sunriseTime = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
-
-            setByName({
-                cityByName: {
-                    nameOfCity: dataCityName.name,
-                    temp: Math.round(dataCityName.main.temp) + "°C",
-                    sunrise: sunriseTime,
-                    wind: dataCityName.wind.speed + " m/s",
-                },
-                byName: true,
-                error: false,
-            });
-        } else {
-            setByName({
-                error: true,
-            });
-        }
     }
 
     return (
