@@ -13,7 +13,10 @@ export default function WeatherByName() {
             apiCityName: '',
             wind: null,
         },
-        error: null,
+        error: {
+            code: '',
+            message: '',
+        },
     });
 
     const onChangeHandle = event => {
@@ -35,7 +38,7 @@ export default function WeatherByName() {
     }
 
     const setWeatherByName = (dataCityName) => {
-        if (byName.cityByName.apiCityName) {
+        if (dataCityName.cod.toString() === '200') {
 
             setByName({
                 cityByName: {
@@ -45,11 +48,19 @@ export default function WeatherByName() {
                     wind: dataCityName.wind.speed + " m/s",
                 },
                 byName: true,
-                error: false,
+                badRequest: false,
+                error: {
+                    code: dataCityName.cod,
+                    message: dataCityName.message,
+                },
             });
-        } else {
+        } else if (dataCityName.cod.toString() === '404' || '400'){
             setByName({
-                error: true,
+                badRequest: true,
+                error: {
+                    code: dataCityName.cod,
+                    message: 'You must enter something, ' + dataCityName.message.toLowerCase() + '.',
+                },
             });
         }
     }
@@ -81,11 +92,11 @@ export default function WeatherByName() {
                         </form>
                     </div>
                 </Row>
-                {byName.error &&
+                {byName.badRequest &&
                 <Row>
                     <Col sm={6} className="mt-0 mb-0 mr-auto ml-auto">
                         <div className="alert alert-danger mt-5" role="alert">
-                            You must enter something
+                            {byName.error.message}
                         </div>
                     </Col>
                 </Row>

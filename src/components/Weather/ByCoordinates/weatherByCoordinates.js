@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
 import {Card, CardDeck, Col, Container, Nav, Row, Tab} from "react-bootstrap";
-import moment from "moment";
 import MapReactGl from "./Map/mapReactGl";
 import {geolocated} from "react-geolocated";
+import moment from "moment";
+import {apiKey} from "../getWeather/utils";
 
-const apiKey = "cd2d4d88f8fd3a3bffd9bcbf58dab9aa";
-
-function WeatherByCoordinates() {
+function WeatherByCoordinates(props) {
 
     const [byCoordinates, setByCoordinates] = useState({
         lat: null,
@@ -15,6 +14,7 @@ function WeatherByCoordinates() {
         latitudeFromMap: null,
         byCoordinates: false,
         cityByCoordinates: {
+            countryByCoordinates: null,
             nameByCoordinates: null,
             weatherArr: [],
         },
@@ -28,50 +28,55 @@ function WeatherByCoordinates() {
         updateByNewCoordinates(handleLat, handlelong);
     }
 
-    const getWeatherByCoordinates = async(event) => {
+    const getWeatherByCoordinates = async (event) => {
         event.preventDefault();
-        const longitude = this.props.coords.longitude;
-        const latitude = this.props.coords.latitude;
+
+        const latitude = props.coords.latitude;
+        const longitude = props.coords.longitude;
 
         setByCoordinates({
-            lon: longitude,
             lat: latitude,
+            lon: longitude,
             isLoading: true,
         });
 
-        if (latitude && longitude) {
-            const urlForWeatherByCoordinates = await fetch(
-                `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`);
-            const dataCoordinates = await urlForWeatherByCoordinates.json();
+        console.log(byCoordinates.lat, byCoordinates.lon)
+        console.log(props.coords.latitude, props.coords.longitude)
 
-            this.setWeatherByCoordinates(dataCoordinates);
+        const urlForWeatherByCoordinates = await fetch(
+            `https://api.openweathermap.org/data/2.5/forecast?lat=${byCoordinates.lat}&lon=${byCoordinates.lon}&appid=${apiKey}&units=metric`);
+        const dataCoordinates = await urlForWeatherByCoordinates.json();
+
+        if (dataCoordinates.cod.toString() === '200') {
+            setWeatherByCoordinates(dataCoordinates);
             setByCoordinates({
                 isLoading: false,
             });
         }
     }
 
-    const updateByNewCoordinates = async(handleLat, handlelong) => {
+    const setWeatherByCoordinates = (dataCoordinates) => {
+        console.log(byCoordinates.lon,'   set  '+ byCoordinates.lat)
+        if (byCoordinates.lon && byCoordinates.lat) {
+            const weatherArr = dataCoordinates.list;
+            const filteredWeatherArr = weatherArr.filter((item, i) => i % 8 === 0);
+            setByCoordinates({
+                cityByCoordinates: {
+                    nameByCoordinates: dataCoordinates.city.name,
+                    countryByCoordinates: dataCoordinates.city.country,
+                    weatherArr: filteredWeatherArr,
+                },
+                byCoordinates: true,
+            });
+        }
+    }
+
+    const updateByNewCoordinates = async (handleLat, handlelong) => {
         const urlForWeatherByCoordinates = await fetch(
             `https://api.openweathermap.org/data/2.5/forecast?lat=${handleLat}&lon=${handlelong}&appid=${apiKey}&units=metric`);
         const dataCoordinates = await urlForWeatherByCoordinates.json();
 
         setWeatherByCoordinates(dataCoordinates);
-    }
-
-    const setWeatherByCoordinates = (dataCoordinates) => {
-        if(byCoordinates.lat && byCoordinates.lon) {
-            const weatherArr = dataCoordinates.list;
-            const filteredWeatherArr = weatherArr.filter((item, i) => i%8===0);
-            setByCoordinates({
-                cityByCoordinates: {
-                    nameByCoordinates: dataCoordinates.city.name,
-                    weatherArr: filteredWeatherArr,
-                },
-                byCoordinates: true,
-                error: false,
-            });
-        }
     }
 
     return (
@@ -86,12 +91,12 @@ function WeatherByCoordinates() {
                                 onClick={getWeatherByCoordinates}
                                 disabled={byCoordinates.isLoading}
                             >
-                                { byCoordinates.isLoading &&
+                                {byCoordinates.isLoading &&
                                 <span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true">
 
                         </span>
                                 }
-                                By coordinates
+                                Get weather
                             </button>
                         </form>
                     </div>
@@ -121,7 +126,7 @@ function WeatherByCoordinates() {
                                                                     eventKey={item.dt.toString()}
                                                                     className="btn btn-outline-success font-weight-bold w-100"
                                                                 >
-                                                                    {item.dt_txt.substr(0,11)}
+                                                                    {item.dt_txt.substr(0, 11)}
                                                                 </Nav.Link>
                                                             </Nav>
                                                         </Col>
@@ -142,13 +147,13 @@ function WeatherByCoordinates() {
                                                                                         key={i}
                                                                                         width="30px"
                                                                                         height="30px"
-                                                                                        src={'https://openweathermap.org/img/wn/'+item.icon+'.png'}
+                                                                                        src={'https://openweathermap.org/img/wn/' + item.icon + '.png'}
                                                                                         alt="No PNG"
                                                                                         className="bg-secondary rounded-circle p-0 mr-1"
                                                                                     />
                                                                                 );
                                                                             })}
-                                                                            {byCoordinates.cityByCoordinates.nameByCoordinates} - {item.dt_txt.substr(0,11)}
+                                                                            {byCoordinates.cityByCoordinates.nameByCoordinates} - {item.dt_txt.substr(0, 11)}
                                                                         </Card.Header>
                                                                         <Card.Body>
                                                                             <Card.Text>
@@ -173,7 +178,7 @@ function WeatherByCoordinates() {
                                             <div className="row">
                                                 <div className="pl-0 pr-0 col container-for-map">
                                                     <MapReactGl
-                                                        long = {byCoordinates.lon}
+                                                        long={byCoordinates.lon}
                                                         lat={byCoordinates.lat}
                                                         longitudeFromMap={byCoordinates.longitudeFromMap}
                                                         latitudeFromMap={byCoordinates.latitudeFromMap}
