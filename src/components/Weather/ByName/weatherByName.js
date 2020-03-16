@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {Card, CardDeck, Col, Container, Row} from "react-bootstrap";
-
-const apiKey = "cd2d4d88f8fd3a3bffd9bcbf58dab9aa";
+import {apiKey} from "../getWeather/utils";
 
 export default function WeatherByName() {
 
@@ -16,7 +15,6 @@ export default function WeatherByName() {
         },
         error: null,
     });
-    console.log(byName)
 
     const onChangeHandle = event => {
         setByName({
@@ -24,10 +22,9 @@ export default function WeatherByName() {
                 apiCityName: event.target.value
             }
         });
-        console.log(byName.cityByName.apiCityName)
     }
 
-    const getWeatherByName = async(event) => {
+    const getWeatherByName = async (event) => {
         event.preventDefault();
 
         const urlForWeatherByName = await fetch(
@@ -38,16 +35,13 @@ export default function WeatherByName() {
     }
 
     const setWeatherByName = (dataCityName) => {
-        if(byName.cityByName.apiCityName) {
-            const sunrise = dataCityName.sys.sunrise;
-            const date = new Date(sunrise);
-            const sunriseTime = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+        if (byName.cityByName.apiCityName) {
 
             setByName({
                 cityByName: {
                     nameOfCity: dataCityName.name,
                     temp: Math.round(dataCityName.main.temp) + "°C",
-                    sunrise: sunriseTime,
+                    sunrise: Math.round(dataCityName.main.feels_like) + "°C",
                     wind: dataCityName.wind.speed + " m/s",
                 },
                 byName: true,
@@ -87,10 +81,14 @@ export default function WeatherByName() {
                         </form>
                     </div>
                 </Row>
-                { byName.error &&
-                <div className="alert alert-danger mt-5" role="alert">
-                    You must enter something
-                </div>
+                {byName.error &&
+                <Row>
+                    <Col sm={6} className="mt-0 mb-0 mr-auto ml-auto">
+                        <div className="alert alert-danger mt-5" role="alert">
+                            You must enter something
+                        </div>
+                    </Col>
+                </Row>
                 }
                 {
                     byName.byName &&
@@ -103,13 +101,13 @@ export default function WeatherByName() {
                                     </Card.Header>
                                     <Card.Body>
                                         <Card.Text>
-                                            Temperature { byName.cityByName.temp }
+                                            Temperature {byName.cityByName.temp}
                                         </Card.Text>
                                         <Card.Text>
-                                            Sunrise { byName.cityByName.sunrise }
+                                            Sunrise {byName.cityByName.sunrise}
                                         </Card.Text>
                                         <Card.Text>
-                                            Wind speed { byName.cityByName.wind }
+                                            Wind speed {byName.cityByName.wind}
                                         </Card.Text>
                                     </Card.Body>
                                 </Card>
