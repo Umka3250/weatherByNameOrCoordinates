@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Card, CardDeck, Col, Container, Row} from "react-bootstrap";
-import {getWeatherByName} from "../getWeather/getWeather";
+import {apiKey} from "../getWeather/utils";
 
 export default function WeatherByName() {
 
@@ -22,6 +22,36 @@ export default function WeatherByName() {
                 apiCityName: event.target.value
             }
         });
+    }
+
+    const getWeatherByName = async (event) => {
+        event.preventDefault();
+
+        const urlForWeatherByName = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?q=${byName.cityByName.apiCityName}&appid=${apiKey}&units=metric`);
+        const dataCityName = await urlForWeatherByName.json();
+
+        setWeatherByName(dataCityName);
+    }
+
+    const setWeatherByName = (dataCityName) => {
+        if (byName.cityByName.apiCityName) {
+
+            setByName({
+                cityByName: {
+                    nameOfCity: dataCityName.name,
+                    temp: Math.round(dataCityName.main.temp) + "°C",
+                    sunrise: Math.round(dataCityName.main.feels_like) + "°C",
+                    wind: dataCityName.wind.speed + " m/s",
+                },
+                byName: true,
+                error: false,
+            });
+        } else {
+            setByName({
+                error: true,
+            });
+        }
     }
 
     return (
@@ -51,10 +81,14 @@ export default function WeatherByName() {
                         </form>
                     </div>
                 </Row>
-                { byName.error &&
-                <div className="alert alert-danger mt-5" role="alert">
-                    You must enter something
-                </div>
+                {byName.error &&
+                <Row>
+                    <Col sm={6} className="mt-0 mb-0 mr-auto ml-auto">
+                        <div className="alert alert-danger mt-5" role="alert">
+                            You must enter something
+                        </div>
+                    </Col>
+                </Row>
                 }
                 {
                     byName.byName &&
@@ -67,13 +101,13 @@ export default function WeatherByName() {
                                     </Card.Header>
                                     <Card.Body>
                                         <Card.Text>
-                                            Temperature { byName.cityByName.temp }
+                                            Temperature {byName.cityByName.temp}
                                         </Card.Text>
                                         <Card.Text>
-                                            Sunrise { byName.cityByName.sunrise }
+                                            Sunrise {byName.cityByName.sunrise}
                                         </Card.Text>
                                         <Card.Text>
-                                            Wind speed { byName.cityByName.wind }
+                                            Wind speed {byName.cityByName.wind}
                                         </Card.Text>
                                     </Card.Body>
                                 </Card>
