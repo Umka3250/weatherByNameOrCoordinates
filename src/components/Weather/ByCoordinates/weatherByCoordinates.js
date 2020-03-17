@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
+import {geolocated} from "react-geolocated";
 import {Card, CardDeck, Col, Container, Nav, Row, Tab} from "react-bootstrap";
 import MapReactGl from "./Map/mapReactGl";
-import {geolocated} from "react-geolocated";
 import moment from "moment";
-import {apiKey} from "../getWeather/utils";
+import {apiKey, linkForRequest} from "../getWeather/utils";
 
 function WeatherByCoordinates(props) {
 
     const [byCoordinates, setByCoordinates] = useState({
-        lat: null,
-        lon: null,
+        lat: '',
+        lon: '',
         longitudeFromMap: null,
         latitudeFromMap: null,
         byCoordinates: false,
@@ -21,32 +21,35 @@ function WeatherByCoordinates(props) {
         placeCoordinates: null,
         error: null,
         isLoading: false,
+        isShowMap: false,
         events: {},
     });
-
-    const handleCoordinates = (handleLat, handlelong) => {
-        updateByNewCoordinates(handleLat, handlelong);
-    }
 
     const getWeatherByCoordinates = async (event) => {
         event.preventDefault();
 
-        const latitude = props.coords.latitude;
+        const latitude  = props.coords.latitude;
         const longitude = props.coords.longitude;
 
-        setByCoordinates({
-            lat: latitude,
-            lon: longitude,
-            isLoading: true,
-        });
-
-        console.log(byCoordinates.lat, byCoordinates.lon)
-        console.log(props.coords.latitude, props.coords.longitude)
+        if (latitude && longitude) {
+            setByCoordinates( {
+                lat: latitude,
+                lon: longitude,
+                isLoading: true,
+            });
+        } else {
+            setByCoordinates({
+                lat: 30,
+                lon: 50,
+                isLoading: true,
+            });
+        }
+        console.log(latitude, longitude + '||' + byCoordinates.lon, byCoordinates.lat)
 
         const urlForWeatherByCoordinates = await fetch(
-            `https://api.openweathermap.org/data/2.5/forecast?lat=${byCoordinates.lat}&lon=${byCoordinates.lon}&appid=${apiKey}&units=metric`);
+            `${linkForRequest}lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric&lang=ru`);
         const dataCoordinates = await urlForWeatherByCoordinates.json();
-
+        console.log(dataCoordinates)
         if (dataCoordinates.cod.toString() === '200') {
             setWeatherByCoordinates(dataCoordinates);
             setByCoordinates({
@@ -56,7 +59,7 @@ function WeatherByCoordinates(props) {
     }
 
     const setWeatherByCoordinates = (dataCoordinates) => {
-        console.log(byCoordinates.lon,'   set  '+ byCoordinates.lat)
+        console.log(byCoordinates.lon, byCoordinates.lat)
         if (byCoordinates.lon && byCoordinates.lat) {
             const weatherArr = dataCoordinates.list;
             const filteredWeatherArr = weatherArr.filter((item, i) => i % 8 === 0);
@@ -71,9 +74,9 @@ function WeatherByCoordinates(props) {
         }
     }
 
-    const updateByNewCoordinates = async (handleLat, handlelong) => {
+    const updateByNewCoordinates = async (handleLat, handleLong) => {
         const urlForWeatherByCoordinates = await fetch(
-            `https://api.openweathermap.org/data/2.5/forecast?lat=${handleLat}&lon=${handlelong}&appid=${apiKey}&units=metric`);
+            `${linkForRequest}lat=${handleLat}&lon=${handleLong}&appid=${apiKey}&units=metric`);
         const dataCoordinates = await urlForWeatherByCoordinates.json();
 
         setWeatherByCoordinates(dataCoordinates);
@@ -170,10 +173,26 @@ function WeatherByCoordinates(props) {
                                                                 </Tab.Pane>
                                                             );
                                                         })}
+                                                        <div className="custom-control custom-checkbox">
+                                                            <input
+                                                                type="checkbox"
+                                                                className="custom-control-input"
+                                                                onChange={() => setByCoordinates({
+                                                                    isShowMap: !byCoordinates.isShowMap,
+                                                                })}
+                                                                defaultChecked={byCoordinates.isShowMap}
+                                                            />
+                                                            <label
+                                                                className="custom-control-label"
+                                                            >
+                                                                Show map, for new place
+                                                            </label>
+                                                        </div>
                                                     </Tab.Content>
                                                 </Col>
                                             </Row>
                                         </Tab.Container>
+                                        { byCoordinates.isShowMap &&
                                         <div className="container">
                                             <div className="row">
                                                 <div className="pl-0 pr-0 col container-for-map">
@@ -182,11 +201,12 @@ function WeatherByCoordinates(props) {
                                                         lat={byCoordinates.lat}
                                                         longitudeFromMap={byCoordinates.longitudeFromMap}
                                                         latitudeFromMap={byCoordinates.latitudeFromMap}
-                                                        handleCoordinates={handleCoordinates}
+                                                        updateByNewCoordinates={updateByNewCoordinates}
                                                     />
                                                 </div>
                                             </div>
                                         </div>
+                                        }
                                     </Card.Body>
                                 </Card>
                             </CardDeck>

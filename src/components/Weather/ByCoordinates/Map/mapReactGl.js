@@ -22,7 +22,8 @@ class MapReactGl extends React.Component{
                 zoom: 14,
                 bearing: 0,
                 pitch: 0
-            },marker: {
+            },
+            marker: {
                 longitude: this.props.long,
                 latitude: this.props.lat,
             },
@@ -30,19 +31,16 @@ class MapReactGl extends React.Component{
             latitudeFromMap: this.props.latitudeFromMap,
         };
 
-        if (!this.props.lat && !this.props.long) {
+        if (!this.props.long && !this.props.lat) {
             this.setState({
-                marker: {
+                viewport: {
                     latitude: 30,
                     longitude: 50,
                 },
-                viewport: {
-                    latitude: this.props.lat,
-                    longitude: this.props.long,
-                    zoom: 14,
-                    bearing: 0,
-                    pitch: 0
-                }
+                marker: {
+                    longitude: 50,
+                    latitude: 30,
+                },
             })
         }
     }
@@ -71,8 +69,8 @@ class MapReactGl extends React.Component{
             latitudeFromMap: event.lngLat[1],
         })
         let handleLat = this.state.latitudeFromMap;
-        let handlelong = this.state.longitudeFromMap;
-        this.props.handleCoordinates(handleLat, handlelong);
+        let handleLong = this.state.longitudeFromMap;
+        this.props.updateByNewCoordinates(handleLat, handleLong);
     };
 
     render() {

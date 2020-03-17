@@ -1,5 +1,4 @@
 {
-
   "homepage": "https://Umka3250.github.io/weatherByNameOrCoordinates/",
   "name": "first-app",
   "version": "1.4.0",
@@ -22,7 +21,8 @@
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "use-position": "0.0.6"
   },
   "scripts": {
     "predeploy": "npm run build",

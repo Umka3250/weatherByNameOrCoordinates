@@ -31,7 +31,7 @@ export default function WeatherByName() {
         event.preventDefault();
 
         const urlForWeatherByName = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${byName.cityByName.apiCityName}&appid=${apiKey}&units=metric`);
+            `https://api.openweathermap.org/data/2.5/weather?q=${byName.cityByName.apiCityName}&appid=${apiKey}&units=metric&lang=ru`);
         const dataCityName = await urlForWeatherByName.json();
 
         setWeatherByName(dataCityName);
@@ -115,7 +115,7 @@ export default function WeatherByName() {
                                             Temperature {byName.cityByName.temp}
                                         </Card.Text>
                                         <Card.Text>
-                                            Sunrise {byName.cityByName.sunrise}
+                                            Feels like {byName.cityByName.sunrise}
                                         </Card.Text>
                                         <Card.Text>
                                             Wind speed {byName.cityByName.wind}
