@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5bd7f302338ab9084614833cb0ce0369",
+    "revision": "8da56b11533599060f9936ee226a8d70",
     "url": "/weatherByNameOrCoordinates/index.html"
   },
   {
-    "revision": "7d359b6b4830eb2f434c",
+    "revision": "7d73e135f76b22590c47",
     "url": "/weatherByNameOrCoordinates/static/css/2.47e06e2e.chunk.css"
   },
   {
-    "revision": "e51b0e569ed2b09f10f7",
+    "revision": "94f3aee9aff07ed37734",
     "url": "/weatherByNameOrCoordinates/static/css/main.d6e4159a.chunk.css"
   },
   {
-    "revision": "7d359b6b4830eb2f434c",
-    "url": "/weatherByNameOrCoordinates/static/js/2.53cf39e9.chunk.js"
+    "revision": "7d73e135f76b22590c47",
+    "url": "/weatherByNameOrCoordinates/static/js/2.20d22ec9.chunk.js"
   },
   {
     "revision": "5aa0ee45bd75d4e6390506b313cd17bd",
-    "url": "/weatherByNameOrCoordinates/static/js/2.53cf39e9.chunk.js.LICENSE.txt"
+    "url": "/weatherByNameOrCoordinates/static/js/2.20d22ec9.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "e51b0e569ed2b09f10f7",
-    "url": "/weatherByNameOrCoordinates/static/js/main.33db7939.chunk.js"
+    "revision": "94f3aee9aff07ed37734",
+    "url": "/weatherByNameOrCoordinates/static/js/main.428cf8d2.chunk.js"
   },
   {
     "revision": "105d003fdcf1b206f03e",
