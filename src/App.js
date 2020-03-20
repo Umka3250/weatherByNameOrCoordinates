@@ -11,8 +11,6 @@ import Fourth from "./components/fourth";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/main.scss';
 
-
-
 function App() {
         return (
             <>
